@@ -17,18 +17,20 @@ AI 帮助研究、比较、批判和整理；Human 保留产品、架构、scope
 
 ## 2. Canonical 生命周期
 
+先按[选择执行 Profile](06-Choosing-an-Execution-Profile.zh-CN.md) 确定执行方式。[Native Codex](../profiles/native-codex/README.zh-CN.md) 和 [OMX-Lite](../profiles/omx-lite/README.zh-CN.md) 是 Canonical Methodology 下的同级实现；OMX Default 是上游基线/参考。
+
 ```text
 Product / Architecture
        ↓
 Human defines Iteration
        ↓
-$iteration: Reality → Memory → Judgment → Contract
+Reality → Memory → Judgment → Contract
        ↓
-Execution: solo / $plan / $ultragoal / $team
+Execution inside the selected profile
        ↓
 Working Software + Evidence
        ↓
-$iteration close
+Close the approved iteration
        ↓
 Result + Deferred Engineering Memory
        ↓
@@ -174,9 +176,17 @@ AI 只有遇到以下情况才默认停下来找 Human：
 
 > 可以 defer ≠ 可以伪造通过。
 
-## 13. OMX 使用规则
+## 13. 执行 Profile 规则
 
-把 OMX 当作当前 Iteration 的执行器。
+**Methodology > Tooling。** 先明确当前 Iteration 的边界，再选择执行机制。
+
+### Native Codex Profile
+
+采用 Execution Plan → Human-approved Phase ≈ Iteration → bounded Goals。Goal 对应 outcome Lane 或范围明确的 Task。使用 worktrees 隔离，按需使用 native subagents，并明确集成负责人。集成成果、收集匹配当前 claim 的证据、记录结果和 deferred memory，然后 STOP。模板与隔离指引见 [Native Profile](../profiles/native-codex/README.zh-CN.md)。
+
+### OMX-Lite Profile
+
+使用 `$iteration` 和 [policy](../policy/OMX-LITE-POLICY.md)，从下列方式中选择满足需求的最轻执行模式。把 OMX 当作当前 Iteration 的执行器。
 
 ### Solo
 一个 scoped task/ lane 可由单 Agent 完成。
@@ -197,15 +207,17 @@ AI 只有遇到以下情况才默认停下来找 Human：
 ## 14. 每轮标准动作
 
 ```text
-1. $iteration start
+1. 审视 Reality + Memory，在选定 Profile 中提出 Contract
 2. Human approve Iteration Contract
 3. 选择最轻执行模式
 4. AI execute + local convergence
 5. 集成/当前 claim 验证
-6. $iteration close
+6. 记录 result + deferred memory；STOP
 7. Human 真正运行/观察
 8. 下一轮重新规划
 ```
+
+Native Codex 将批准的 Phase 记录到 Execution Plan 并执行其 bounded Goals。OMX-Lite 的第 1、6 步使用 `$iteration start` 和 `$iteration close`。两者都保留 **Remembered ≠ Scheduled Now** 与 **Iteration Complete ≠ Fully Verified ≠ Release Ready**。
 
 ## 15. Release Gate
 

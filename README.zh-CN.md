@@ -4,7 +4,22 @@
 
 > **由人主导、迭代推进、借助 AI 编码代理并行开展的软件开发。**
 
-AI Dev Loop 是一套面向真实软件项目、使用 Coding Agents（编码代理）的轻量级开发工作流。
+AI Dev Loop 是一套面向真实软件项目、使用 Coding Agents（编码代理）的轻量级开发方法论。**Methodology > Tooling**：不同执行 Profile 落实同一套由 Human 控制的生命周期。
+
+```text
+               AI DEV LOOP
+          Canonical Methodology
+                  │
+        ┌─────────┴─────────┐
+        ▼                   ▼
+ Native Codex Profile   OMX-Lite Profile
+      lightweight          structured
+
+             OMX Default
+          upstream baseline
+```
+
+先阅读[选择执行 Profile](docs/06-Choosing-an-Execution-Profile.zh-CN.md)，再使用同级的 [Native Codex Profile](profiles/native-codex/README.zh-CN.md) 或 [OMX-Lite Profile](profiles/omx-lite/README.zh-CN.md)。
 
 它适合希望做到以下几点的团队：
 
@@ -27,7 +42,7 @@ Human Architecture / Product Direction
                 ↓
      Reality → Memory → Judgment → Contract
                 ↓
-        AI / OMX / Codex Execution
+       Selected Profile Execution
                 ↓
         Working Software + Evidence
                 ↓
@@ -40,7 +55,7 @@ Human Architecture / Product Direction
           Next Iteration
 ```
 
-人确定架构与产品方向，控制迭代边界；结合现实、记忆和判断形成约定后，由 AI / OMX / Codex 执行，产出可运行的软件与证据，沉淀迭代结果和工程记忆。随后停止，由人观察、重新规划，再进入下一轮迭代。
+人确定架构与产品方向，控制迭代边界；结合现实、记忆和判断形成约定后，通过选定的 Profile 执行，产出可运行的软件与证据，沉淀迭代结果和工程记忆。随后停止，由人观察、重新规划，再进入下一轮迭代。
 
 以下两个区分至关重要：
 
@@ -115,15 +130,19 @@ Iteration Contract
 
 ## 快速开始
 
-### 1. 将工作流添加到项目中
+### 1. 选择执行 Profile
 
-阅读：
+阅读[选择执行 Profile](docs/06-Choosing-an-Execution-Profile.zh-CN.md) 和[项目接入说明](docs/05-Project-Setup.zh-CN.md)。
+
+[Native Codex](profiles/native-codex/README.zh-CN.md) 从 Execution Plan 和 Goal 模板开始：
 
 ```text
-docs/05-Project-Setup.zh-CN.md
+Execution Plan → Human-approved Phase ≈ Iteration → bounded Goals
+→ worktrees / native subagents when useful → integration + evidence
+→ result + deferred memory → STOP → Human review
 ```
 
-或使用辅助脚本：
+Native 不要求安装 `$iteration` 技能或 OMX runtime。[OMX-Lite](profiles/omx-lite/README.zh-CN.md) 可使用辅助脚本安装策略、模板和技能：
 
 ```bash
 ./scripts/install-into-project.sh /path/to/your/project omx
@@ -136,9 +155,9 @@ omx   → .codex/skills/iteration/
 codex → .agents/skills/iteration/
 ```
 
-脚本还会复制策略文件和模板。
+两种参数都安装 OMX-Lite 资产。`codex` 选择普通 Codex host 及其技能发现路径，**不代表**选择 Native Codex Profile。脚本还会复制策略文件和模板。
 
-### 2. 启动一轮迭代
+### 2. 启动一轮 OMX-Lite 迭代
 
 在目标项目中执行：
 
@@ -150,7 +169,7 @@ $iteration
 
 它会推荐下一轮范围明确的开发，只就高价值的人类决策提出问题。
 
-### 3. 使用满足需求的最轻量工具执行
+### 3. 使用满足需求的最轻量工具执行 OMX-Lite
 
 常见选项：
 
@@ -161,7 +180,7 @@ $ultragoal
 $team
 ```
 
-### 4. 结束本轮迭代
+### 4. 结束本轮 OMX-Lite 迭代
 
 ```text
 $iteration close
@@ -201,7 +220,13 @@ engineering/deferred.md
 │   ├── 04-15min-SOP.md
 │   ├── 04-15min-SOP.zh-CN.md
 │   ├── 05-Project-Setup.md
-│   └── 05-Project-Setup.zh-CN.md
+│   ├── 05-Project-Setup.zh-CN.md
+│   ├── 06-Choosing-an-Execution-Profile.md
+│   └── 06-Choosing-an-Execution-Profile.zh-CN.md
+│
+├── profiles/
+│   ├── native-codex/  # Profile、Execution Plan / Goal 模板、示例
+│   └── omx-lite/      # Profile 与现有资产入口
 │
 ├── policy/
 │   └── OMX-LITE-POLICY.md
@@ -242,22 +267,27 @@ engineering/deferred.md
 docs/01-Research-Report.zh-CN.md
 → docs/02-Team-Playbook.zh-CN.md
 → docs/03-Project-Development-Guide.zh-CN.md
+→ docs/06-Choosing-an-Execution-Profile.zh-CN.md
+→ selected profiles/*/README.zh-CN.md
 ```
 
 ### 加入进行中项目的工程师
 
 ```text
 docs/04-15min-SOP.zh-CN.md
+→ selected execution profile
 → project ARCHITECTURE.md
 → active iteration
 ```
 
-即先阅读 SOP，再阅读项目的 `ARCHITECTURE.md`，最后了解当前迭代。
+即先阅读 SOP 和选定 Profile，再阅读项目的 `ARCHITECTURE.md`，最后了解当前迭代。
 
 ### 工具 / 工作流维护者
 
 ```text
 HANDOFF.md
+→ docs/06-Choosing-an-Execution-Profile.zh-CN.md
+→ profiles/
 → policy/
 → skills/iteration/
 → VALIDATION-REPORT.md
@@ -304,7 +334,7 @@ ESCALATE
 
 ## 示例
 
-参见：
+OMX-Lite 的迭代及延期工程记忆示例：
 
 ```text
 examples/cross-platform-v1/
@@ -323,13 +353,19 @@ Iteration 01 — Feature Complete
 → Windows 验证仍被记录，并有意继续延后
 ```
 
+Native Codex 的规划、有界 Goal、worktree 所有权、集成与 Phase STOP 示例：
+
+```text
+profiles/native-codex/examples/
+```
+
 ---
 
 ## 工具理念
 
 AI Dev Loop 有意做到**了解工具，但不依赖特定工具**（tool-aware but tool-independent）。
 
-目前，它包含面向 OMX 的策略，以及为 Codex/OMX 工作流设计的 `$iteration` 技能。
+[Native Codex Profile](profiles/native-codex/README.zh-CN.md) 使用 Execution Plan、Phase 和范围明确的 Goal。[OMX-Lite Profile](profiles/omx-lite/README.zh-CN.md) 保留适用于 Codex/OMX host 的策略和 `$iteration` 技能。[OMX Default](integrations/OMX.md) 是上游参考，不是第三套 canonical 生命周期，也不保证每种上游模式都实现这些边界。
 
 方法论本身围绕以下稳定概念构建：
 
@@ -354,10 +390,10 @@ Stop Boundary
 当前版本：
 
 ```text
-v1.0.0
+v1.1.0
 ```
 
-v1.0 已准备好接受真实项目验证。
+v1.1.0 在稳定的 v1.0 方法论基线上增加执行 Profile。canonical 五层、四个 View、Human Gate、deferred memory 和 STOP 边界保持不变。
 
 下一阶段是在多个真实 V1 项目中使用这套工作流，并根据证据改进，而不是继续堆叠流程理论。
 

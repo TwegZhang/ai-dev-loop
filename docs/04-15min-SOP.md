@@ -5,29 +5,34 @@
 ## All You Need to Remember
 
 ```text
-Read Architecture
-→ $iteration start
+Select execution profile / Read Architecture
+→ Reality → Memory → Judgment → Contract
 → Human approves this iteration
 → Execute
 → Verify the current claim
-→ $iteration close
+→ Result + deferred memory → STOP
 → Human reviews actual results
 → Next iteration
 ```
 
 ## 1. Read First
 
+Choose [Native Codex](../profiles/native-codex/README.md) or [OMX-Lite](../profiles/omx-lite/README.md) using [Choosing an Execution Profile](06-Choosing-an-Execution-Profile.md). Methodology > Tooling: these are sibling profiles; OMX Default is the upstream baseline/reference.
+
 At minimum:
 
 ```text
 ARCHITECTURE.md
 The current iteration file
-policy/OMX-LITE-POLICY.md (or the project's copy)
+The selected profile's instructions
+policy/OMX-LITE-POLICY.md (for OMX-Lite)
 ```
 
 ## 2. Start a New Iteration
 
-Run:
+For Native Codex, use an Execution Plan and propose a Human-approved Phase ≈ Iteration with bounded Goals. Review current code, previous results, deferred memory, and Human observations before proposing the Contract. See the [Native templates](../profiles/native-codex/README.md).
+
+For OMX-Lite, run:
 
 ```text
 $iteration
@@ -48,7 +53,7 @@ The Human only needs to confirm or adjust the Goal, Fidelity, Scope, and key tra
 
 ## 3. Approve the Contract
 
-Output:
+Capture the Contract in the Native Execution Plan's Phase section (or link a canonical contract), or in OMX-Lite's output:
 
 ```text
 iterations/iteration-XX.md
@@ -67,6 +72,10 @@ Exit Criteria
 ```
 
 ## 4. Choose an Execution Mode
+
+Native Codex: approved Phase → bounded Goals → worktrees/subagents when useful → integration and evidence → STOP. The main session owns integration; follow the profile's isolation guidance.
+
+OMX-Lite:
 
 ```text
 Single task → solo
@@ -123,15 +132,17 @@ Windows validation: DEFERRED
 
 Provided the current Fidelity does not require Windows to have been validated.
 
+**Iteration Complete ≠ Fully Verified ≠ Release Ready.** Record DV / TD / EG / KR and reassess with PROMOTE / KEEP-DEFERRED / RESOLVE / OBSOLETE / ESCALATE. **Remembered ≠ Scheduled Now.**
+
 ## 8. Close the Iteration
 
-Run:
+Native Codex: consolidate the Phase result, evidence, limitations, learning, and unresolved engineering memory. OMX-Lite: run:
 
 ```text
 $iteration close
 ```
 
-You get:
+OMX-Lite writes the following; Native Codex records the equivalent result and updates the same persistent memory:
 
 ```text
 iterations/iteration-XX-result.md

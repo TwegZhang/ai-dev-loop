@@ -23,9 +23,12 @@ English is the canonical language for repository artifacts that control, execute
 - `examples/`;
 - `integrations/`;
 - `scripts/`;
+- templates and examples under `profiles/`;
 - iteration contracts, iteration results, and deferred engineering memory produced from the templates.
 
 Human-facing project explanations may be maintained in both English and Simplified Chinese. Use the unsuffixed `.md` file as the canonical English document and `.zh-CN.md` as its Chinese companion. Keep reciprocal language links at the top of both files.
+
+Profile READMEs and the execution-profile selector are bilingual Human-facing documentation. Profile templates and examples are English-only workflow artifacts; do not add Chinese companions for them. Preserve this distinction when extending `profiles/`.
 
 Commands, paths, identifiers, status names, template fields, and normative workflow semantics must remain identical across language versions. When the two versions conflict, the canonical English document governs until the translation is reconciled.
 
@@ -82,10 +85,13 @@ When changing canonical concepts, check all affected layers:
 Research
 Playbook
 Human Guide
+Profile Selector and Profile READMEs
 Policy
 Templates
+Profile Templates
 Skill
 Examples
+Profile Examples
 Handoff
 ```
 

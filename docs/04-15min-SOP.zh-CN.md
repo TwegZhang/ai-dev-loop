@@ -5,29 +5,34 @@
 ## 你只需要记住
 
 ```text
-读 Architecture
-→ $iteration start
+选择执行 Profile / 读 Architecture
+→ Reality → Memory → Judgment → Contract
 → Human 批准本轮
 → 执行
 → 验证当前 claim
-→ $iteration close
+→ Result + deferred memory → STOP
 → Human 看真实结果
 → 下一轮
 ```
 
 ## 1. 先读
 
+按[选择执行 Profile](06-Choosing-an-Execution-Profile.zh-CN.md) 选择 [Native Codex](../profiles/native-codex/README.zh-CN.md) 或 [OMX-Lite](../profiles/omx-lite/README.zh-CN.md)。Methodology > Tooling：两者是同级 Profile；OMX Default 是上游基线/参考。
+
 至少：
 
 ```text
 ARCHITECTURE.md
 当前 iteration 文件
-policy/OMX-LITE-POLICY.md（或项目副本）
+选定 Profile 的说明
+policy/OMX-LITE-POLICY.md（OMX-Lite 使用）
 ```
 
 ## 2. 新一轮
 
-运行：
+Native Codex 使用 Execution Plan，提出由 Human 批准的 Phase ≈ Iteration 及其 bounded Goals。提出 Contract 前，先审视当前代码、上一轮结果、deferred memory 和 Human 观察。参见 [Native 模板](../profiles/native-codex/README.zh-CN.md)。
+
+OMX-Lite 运行：
 
 ```text
 $iteration
@@ -48,7 +53,7 @@ Human 只需要确认/修改 Goal、Fidelity、Scope 和关键取舍。
 
 ## 3. 批准 Contract
 
-输出：
+Contract 保存在 Native Execution Plan 的 Phase 部分（或链接 canonical contract），也可使用 OMX-Lite 的输出：
 
 ```text
 iterations/iteration-XX.md
@@ -67,6 +72,10 @@ Exit Criteria
 ```
 
 ## 4. 选择执行模式
+
+Native Codex：批准的 Phase → bounded Goals → 按需使用 worktrees/subagents → integration 和 evidence → STOP。主 session 负责集成；隔离方式遵循 Profile 指引。
+
+OMX-Lite：
 
 ```text
 单任务 → solo
@@ -125,15 +134,17 @@ Windows validation: DEFERRED
 
 前提是当前 Fidelity 不要求 Windows 已验证。
 
+**Iteration Complete ≠ Fully Verified ≠ Release Ready。** 记录 DV / TD / EG / KR，并通过 PROMOTE / KEEP-DEFERRED / RESOLVE / OBSOLETE / ESCALATE 重新评估。**Remembered ≠ Scheduled Now。**
+
 ## 8. 本轮结束
 
-运行：
+Native Codex 汇总 Phase result、证据、限制、工程经验和未解决的工程记忆。OMX-Lite 运行：
 
 ```text
 $iteration close
 ```
 
-得到：
+OMX-Lite 生成下列文件；Native Codex 记录等价结果，并更新同一份持久工程记忆：
 
 ```text
 iterations/iteration-XX-result.md

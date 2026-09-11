@@ -1,4 +1,6 @@
-# AI Development Workflow
+# AI Development Workflow — OMX-Lite Profile
+
+Use this snippet when adopting the AI Dev Loop OMX-Lite Profile, whether hosted by OMX or plain Codex. It configures OMX-Lite iteration behavior; it does not select the Native Codex Profile.
 
 Before planning or executing an iteration, read:
 

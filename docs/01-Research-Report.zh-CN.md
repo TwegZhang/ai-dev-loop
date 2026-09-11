@@ -330,32 +330,19 @@ Human 的高价值工作集中在：
 - Verification claims；
 - Final accountability。
 
-## 12. OMX 在本方法中的位置
+## 12. 执行 Profile：Methodology > Tooling
 
-OMX 很适合提供：
+Canonical Methodology 包含两个同级执行 Profile：[Native Codex](../profiles/native-codex/README.zh-CN.md) 和 [OMX-Lite](../profiles/omx-lite/README.zh-CN.md)。两者保留前述五层和四个 View。OMX Default 是上游基线/参考，不是第三套方法论。
 
-- planning；
-- durable execution；
-- team/worktree execution；
-- runtime state / resume；
-- verification support。
+| 执行方式 | 执行路径 | 取舍 |
+|---|---|---|
+| Native Codex Profile | Execution Plan → Phase ≈ Iteration → bounded Goals → 按需使用 worktrees/subagents → integration/evidence → STOP | 编排开销较小；主 session 与 Human 需要明确维护边界、集成责任和记忆 |
+| OMX-Lite Profile | `$iteration` + policy，按需选择 solo / `$plan` / `$ultragoal` / `$team`，结束本轮后 STOP | 明确的迭代产物与选定 runtime 的协调能力，同时增加安装和状态管理成本 |
+| OMX Default reference | 选定的上游 workflow 及其自身约定 | 能力、检查点和持久化方式取决于模式及安装版本；应评估适配程度，不能假定本仓库策略自动生效 |
 
-但不应要求 OMX 管理从当前状态一直到最终 Release 的完整 lifecycle。
+Native Goal 对应一个 outcome Lane 或范围明确的 Task，不替代 Human-controlled Iteration。OMX-Lite 将选定的 OMX 工具定位为 Iteration Execution Coordinator。两种 Profile 都不把通往 Release 的全过程交给无边界的执行循环。
 
-本方法把它定位为：
-
-> **Iteration Execution Coordinator**
-
-每轮 Human 定义边界，再按需要使用：
-
-```text
-solo
-$plan
-$ultragoal
-$team
-```
-
-OMX 当前也明确区分轻量 planning、durable execution、parallel team，并提醒不应为了大项目本身而默认过度使用协调型 workflow。
+选择标准见[选择执行 Profile](06-Choosing-an-Execution-Profile.zh-CN.md)，上游背景见 [OMX 集成说明](../integrations/OMX.md)。此处比较的是本仓库建议的使用方式，不是对所有上游模式行为的概括。
 
 ## 13. 已形成的强共识
 

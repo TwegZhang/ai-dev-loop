@@ -2,6 +2,22 @@
 
 [English](05-Project-Setup.md) | [&#31616;&#20307;&#20013;&#25991;](05-Project-Setup.zh-CN.md)
 
+## 0. Select an Execution Profile First
+
+**Methodology > Tooling.** The Canonical Methodology has sibling [Native Codex](../profiles/native-codex/README.md) and [OMX-Lite](../profiles/omx-lite/README.md) profiles. OMX Default is an upstream baseline/reference. Use [Choosing an Execution Profile](06-Choosing-an-Execution-Profile.md) for selection and switching guidance.
+
+For Native Codex, start with its [Execution Plan](../profiles/native-codex/EXECUTION-PLAN-TEMPLATE.md) and [Goal](../profiles/native-codex/GOAL-TEMPLATE.md) templates. Keep project architecture, decisions, an approved Phase contract, results, and `engineering/deferred.md` in ordinary repository files. Follow Execution Plan → Phase ≈ Iteration → bounded Goals → worktrees/subagents when useful → integration/evidence → result and memory → STOP. No `$iteration` or OMX runtime installation is required; see the profile for isolation and native capability guidance.
+
+The installation steps below configure **OMX-Lite**. The helper remains an installer for OMX-Lite assets:
+
+```bash
+./scripts/install-into-project.sh /path/to/your/project omx
+# Or, for the plain Codex host:
+./scripts/install-into-project.sh /path/to/your/project codex
+```
+
+The `codex` argument selects the host's skill discovery path; it does **not** select the Native Codex Profile. Both targets copy the policy, templates, and `$iteration` skill.
+
 ## 1. Recommended Project Structure
 
 ```text
@@ -42,7 +58,7 @@ The single source in this workflow package is:
 skills/iteration/
 ```
 
-### OMX Project Scope (the Default for This Workflow)
+### OMX Project Scope (OMX-Lite on an OMX Host)
 
 The current OMX project setup uses the project's `./.codex/` as its scoped Codex home and installs project skills into:
 
@@ -59,7 +75,7 @@ cp -R <workflow>/skills/iteration .codex/skills/
 
 Then launch Codex through OMX and verify the installation through the skill list or `$iteration`.
 
-### Plain Codex Repo-Local Setup
+### Plain Codex Repo-Local Setup (OMX-Lite Assets)
 
 The repo-local discovery path for checked-in skills listed in OpenAI's current Codex documentation is:
 
@@ -67,7 +83,7 @@ The repo-local discovery path for checked-in skills listed in OpenAI's current C
 .agents/skills/
 ```
 
-A plain Codex repository can therefore use:
+A plain Codex repository can therefore install the same OMX-Lite skill with:
 
 ```bash
 mkdir -p .agents/skills
@@ -133,6 +149,8 @@ If `$iteration` does not appear:
 ## 8. Version Notes
 
 Skill/OMX/Codex discovery paths and commands can change.
+
+Both profiles retain Project → Iteration → Lane → Task → Inner Loop, the four Views, Human Gate, and the iteration STOP. Preserve DV / TD / EG / KR records and PROMOTE / KEEP-DEFERRED / RESOLVE / OBSOLETE / ESCALATE triage. **Iteration Complete ≠ Fully Verified ≠ Release Ready** and **Remembered ≠ Scheduled Now** hold under either profile.
 
 The methodology's assets should be grounded in:
 

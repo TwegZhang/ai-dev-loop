@@ -41,6 +41,10 @@ for directory in policy templates skills examples integrations scripts; do
   fi
 done
 
+if [[ -d "$repo_root/profiles" ]]; then
+  collect_files "$repo_root/profiles" -type f ! -name '*.zh-CN.md'
+fi
+
 if [[ -d "$repo_root/docs" ]]; then
   collect_files "$repo_root/docs" -maxdepth 1 -type f -name '*.md' ! -name '*.zh-CN.md'
 fi
@@ -98,6 +102,9 @@ check_bilingual_pair "$repo_root/docs/02-Team-Playbook.md" "$repo_root/docs/02-T
 check_bilingual_pair "$repo_root/docs/03-Project-Development-Guide.md" "$repo_root/docs/03-Project-Development-Guide.zh-CN.md"
 check_bilingual_pair "$repo_root/docs/04-15min-SOP.md" "$repo_root/docs/04-15min-SOP.zh-CN.md"
 check_bilingual_pair "$repo_root/docs/05-Project-Setup.md" "$repo_root/docs/05-Project-Setup.zh-CN.md"
+check_bilingual_pair "$repo_root/docs/06-Choosing-an-Execution-Profile.md" "$repo_root/docs/06-Choosing-an-Execution-Profile.zh-CN.md"
+check_bilingual_pair "$repo_root/profiles/native-codex/README.md" "$repo_root/profiles/native-codex/README.zh-CN.md"
+check_bilingual_pair "$repo_root/profiles/omx-lite/README.md" "$repo_root/profiles/omx-lite/README.zh-CN.md"
 
 if ((failure_count > 0)); then
   exit 1

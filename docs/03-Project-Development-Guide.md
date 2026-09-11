@@ -3,7 +3,7 @@
 [English](03-Project-Development-Guide.md) | [&#31616;&#20307;&#20013;&#25991;](03-Project-Development-Guide.zh-CN.md)
 
 > For leaders, architects, and engineers to use directly.
-> This development method puts Humans in charge of overall iteration direction and OMX in charge of execution within each iteration.
+> This development method puts Humans in charge of overall iteration direction and AI in charge of execution within each iteration. Methodology > Tooling.
 
 ## 1. Mental Model
 
@@ -11,13 +11,13 @@
 Human:
 Product / Architecture / How far this iteration should go
                  ↓
-$iteration:
+Iteration planning:
 Reality → Memory → Judgment → Contract
                  ↓
-OMX/Codex:
+Selected execution profile:
 Execute rigorously within this iteration's boundaries
                  ↓
-$iteration close:
+Iteration close:
 Result + Deferred Memory
                  ↓
 STOP
@@ -28,6 +28,8 @@ Run the software / Observe / Decide on the next iteration
 
 ## 2. Adopting This Workflow in a Project for the First Time
 
+Select [Native Codex](../profiles/native-codex/README.md) or [OMX-Lite](../profiles/omx-lite/README.md) using [Choosing an Execution Profile](06-Choosing-an-Execution-Profile.md). They are sibling profiles under the Canonical Methodology. OMX Default is an upstream baseline/reference.
+
 The project should have at least:
 
 ```text
@@ -35,7 +37,9 @@ ARCHITECTURE.md
 specs/...
 ```
 
-Copy from this workflow package:
+For Native Codex, use the profile's Execution Plan and Goal templates. Follow Execution Plan → Human-approved Phase ≈ Iteration → bounded Goals → worktrees/subagents when useful → integration/evidence → result and memory → STOP.
+
+For OMX-Lite, copy from this workflow package:
 
 ```text
 policy/OMX-LITE-POLICY.md
@@ -50,7 +54,7 @@ iterations/
 engineering/deferred.md
 ```
 
-See `docs/05-Project-Setup.md` for detailed installation instructions.
+See [Project Setup](05-Project-Setup.md) for installation instructions. The sections about the policy and `$iteration` commands below describe OMX-Lite; Native Codex applies the same four Views and close requirements through its plan and result files.
 
 ## 3. Using `OMX-LITE-POLICY.md`
 
@@ -70,9 +74,9 @@ The project's `AGENTS.md` should reference it.
 
 ## 4. Using `ITERATION-TEMPLATE.md`
 
-The Template is the **Contract schema for one iteration handed from Human to OMX**.
+The Template is the **Contract schema for one iteration handed from Human to AI**. Native Codex may link this contract or preserve its required content in the Phase section of its Execution Plan.
 
-The recommended default is to generate it automatically with:
+For OMX-Lite, the recommended default is to generate it automatically with:
 
 ```text
 $iteration start
@@ -88,7 +92,9 @@ You can also copy it manually:
 cp templates/ITERATION-TEMPLATE.md iterations/iteration-01.md
 ```
 
-## 5. `$iteration start`: Four Views
+## 5. Four Views (OMX-Lite: `$iteration start`)
+
+Both profiles use these Views. In Native Codex, ask the main session to gather and propose the same information before Human approval of the Phase; the skill automation described below belongs to OMX-Lite.
 
 ### View 1 — Reality
 
@@ -160,6 +166,10 @@ This defines the execution boundary for the iteration.
 
 After the Contract is approved:
 
+Native Codex executes bounded Goals from the approved Phase, using worktrees and native subagents where useful, with a named integration owner. Follow the [Native profile](../profiles/native-codex/README.md) for the detailed operating path.
+
+For OMX-Lite:
+
 | Situation | Use |
 |---|---|
 | One clear bounded task | solo Codex/OMX |
@@ -167,7 +177,7 @@ After the Contract is approved:
 | One long execution thread | `$ultragoal` |
 | Multiple genuinely parallel Lanes that warrant coordination | `$team` |
 
-Current official OMX guidance also distinguishes lightweight planning, durable execution, and coordinated teams; a project being “large” does not mean every iteration needs Team.
+Select only the coordination needed by the current iteration; a project being “large” does not mean every iteration needs Team. Upstream OMX Default behavior depends on the selected mode and is not automatically governed by OMX-Lite policy.
 
 ## 7. Why Full Autopilot Is Not the Default for Managing All of V1
 
@@ -229,7 +239,7 @@ Required before: Release Candidate
 Suggested trigger: Platform Validation
 ```
 
-When a Platform Validation iteration arrives, `$iteration` sees the trigger again and recommends PROMOTE.
+When a Platform Validation iteration arrives, reassess the trigger and consider PROMOTE; OMX-Lite's `$iteration` assists this review. Use DV, TD, EG, and KR categories and PROMOTE / KEEP-DEFERRED / RESOLVE / OBSOLETE / ESCALATE triage. **Remembered ≠ Scheduled Now.**
 
 ## 11. `$iteration status`
 
@@ -270,13 +280,13 @@ Focus the review on whether:
 
 ## 13. `$iteration close`
 
-Once the iteration meets its Exit Criteria:
+Once the iteration meets its Exit Criteria, Native Codex consolidates the Phase result and reconciles deferred memory using its profile's result guidance. OMX-Lite runs:
 
 ```text
 $iteration close
 ```
 
-It performs two essential actions:
+Both profiles perform two essential actions:
 
 ### Produce Event Memory
 
@@ -312,7 +322,7 @@ Read Result + Deferred
 Decide on the next iteration
 ```
 
-The Human's current observations become Reality input for the next `$iteration start`.
+The Human's current observations become Reality input for the next approved Phase or `$iteration start`. **Iteration Complete ≠ Fully Verified ≠ Release Ready.**
 
 ## 15. Preserving Engineering Learning
 
@@ -350,4 +360,4 @@ This still aims to “build V1 quickly,” without forcing the first iteration t
 
 ## 17. Final Principle
 
-> **OMX owns “how to execute one iteration well”; Humans own “what this iteration is and how many more iterations the project needs.”**
+> **AI executes one iteration within the selected profile; Humans own what this iteration is and how many more iterations the project needs.**

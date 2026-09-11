@@ -3,7 +3,7 @@
 [English](03-Project-Development-Guide.md) | 简体中文
 
 > 给 Leader、架构师和工程师直接使用。
-> 这是一套“Human 控宏观迭代，OMX 控单轮执行”的开发方法。
+> 这是一套“Human 控宏观迭代，AI 在单轮边界内执行”的开发方法。Methodology > Tooling。
 
 ## 1. 心智模型
 
@@ -11,13 +11,13 @@
 Human:
 产品 / 架构 / 本轮做到什么程度
                  ↓
-$iteration:
+Iteration planning:
 Reality → Memory → Judgment → Contract
                  ↓
-OMX/Codex:
+Selected execution profile:
 在本轮边界内严谨执行
                  ↓
-$iteration close:
+Iteration close:
 Result + Deferred Memory
                  ↓
 STOP
@@ -28,6 +28,8 @@ Human:
 
 ## 2. 第一次把这套流程接入项目
 
+按[选择执行 Profile](06-Choosing-an-Execution-Profile.zh-CN.md) 选择 [Native Codex](../profiles/native-codex/README.zh-CN.md) 或 [OMX-Lite](../profiles/omx-lite/README.zh-CN.md)。它们是 Canonical Methodology 下的同级 Profile；OMX Default 是上游基线/参考。
+
 项目至少应有：
 
 ```text
@@ -35,7 +37,9 @@ ARCHITECTURE.md
 specs/...
 ```
 
-从本交付包复制：
+Native Codex 使用其 Execution Plan 和 Goal 模板，按 Execution Plan → Human-approved Phase ≈ Iteration → bounded Goals → 按需使用 worktrees/subagents → integration/evidence → result 和 memory → STOP 推进。
+
+OMX-Lite 从本交付包复制：
 
 ```text
 policy/OMX-LITE-POLICY.md
@@ -50,7 +54,7 @@ iterations/
 engineering/deferred.md
 ```
 
-详细安装见 `docs/05-Project-Setup.md`。
+详细安装见[项目接入说明](05-Project-Setup.zh-CN.md)。下文的 policy 和 `$iteration` 命令说明适用于 OMX-Lite；Native Codex 通过 plan 和 result 文件落实同样的四个 View 与结束要求。
 
 ## 3. `OMX-LITE-POLICY.md` 怎么用
 
@@ -70,9 +74,9 @@ Policy 是稳定团队规则，不是每轮填写文件。
 
 ## 4. `ITERATION-TEMPLATE.md` 怎么用
 
-Template 是 **Human → OMX 的一轮 Contract schema**。
+Template 是 **Human → AI 的一轮 Contract schema**。Native Codex 可链接该契约，或将其必需内容保存在 Execution Plan 的 Phase 部分。
 
-推荐默认由：
+OMX-Lite 推荐默认由：
 
 ```text
 $iteration start
@@ -90,7 +94,9 @@ Skill 自动读 Repo 和上一轮 Memory，再让 Human 只做判断。
 cp templates/ITERATION-TEMPLATE.md iterations/iteration-01.md
 ```
 
-## 5. `$iteration start`：四 View
+## 5. 四 View（OMX-Lite：`$iteration start`）
+
+两种 Profile 都使用这四个 View。Native Codex 由主 session 收集并提出同样的信息，再由 Human 批准 Phase；下文的技能自动化属于 OMX-Lite。
 
 ### View 1 — Reality
 
@@ -162,6 +168,10 @@ iterations/iteration-XX.md
 
 Contract 批准后：
 
+Native Codex 执行批准 Phase 内的 bounded Goals，按需使用 worktrees 和 native subagents，并明确集成负责人。详细路径见 [Native Profile](../profiles/native-codex/README.zh-CN.md)。
+
+OMX-Lite：
+
 | 情况 | 使用 |
 |---|---|
 | 单个清晰 bounded task | solo Codex/OMX |
@@ -169,7 +179,7 @@ Contract 批准后：
 | 单条长执行主线 | `$ultragoal` |
 | 多个真正并行、值得协调的 Lane | `$team` |
 
-OMX 当前官方也区分轻量 planning、durable execution 与 coordinated team；不需要为了项目“大”而一律 Team。
+只采用当前迭代需要的协调方式；不需要为了项目“大”而一律 Team。上游 OMX Default 的行为取决于所选模式，不自动受 OMX-Lite policy 约束。
 
 ## 7. 为什么不默认用完整 Autopilot 管整个 V1
 
@@ -233,7 +243,7 @@ Required before: Release Candidate
 Suggested trigger: Platform Validation
 ```
 
-到了 Platform Validation 轮次，`$iteration` 会重新看到 trigger，建议 PROMOTE。
+到了 Platform Validation 轮次，应重新评估 trigger 并考虑 PROMOTE；OMX-Lite 的 `$iteration` 会协助审视。使用 DV、TD、EG、KR 分类，以及 PROMOTE / KEEP-DEFERRED / RESOLVE / OBSOLETE / ESCALATE 分流。**Remembered ≠ Scheduled Now。**
 
 ## 11. `$iteration status`
 
@@ -274,13 +284,13 @@ $iteration review
 
 ## 13. `$iteration close`
 
-本轮达到 Exit Criteria 后：
+本轮达到 Exit Criteria 后，Native Codex 按其 Profile 的结果指引汇总 Phase result 并整理 deferred memory。OMX-Lite 运行：
 
 ```text
 $iteration close
 ```
 
-它做两件最重要的事：
+两种 Profile 都做两件最重要的事：
 
 ### 产出 Event Memory
 
@@ -316,7 +326,7 @@ Working Software
 决定下一轮
 ```
 
-当前 Human observation 会成为下次 `$iteration start` 的 Reality 输入。
+当前 Human observation 会成为下一次批准 Phase 或 `$iteration start` 的 Reality 输入。**Iteration Complete ≠ Fully Verified ≠ Release Ready。**
 
 ## 15. Engineering Learning 怎么保存
 
@@ -354,4 +364,4 @@ Iteration 4 — Release Candidate
 
 ## 17. 最终原则
 
-> **OMX 管“一轮如何执行好”；Human 管“这一轮是什么、项目还需要跑几轮”。**
+> **AI 在选定 Profile 内执行一轮；Human 决定这一轮是什么，以及项目还需要跑几轮。**

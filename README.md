@@ -4,7 +4,22 @@
 
 > **Human-led, iterative, parallel software development with AI coding agents.**
 
-AI Dev Loop is a lightweight development workflow for real software projects using Coding Agents.
+AI Dev Loop is a lightweight development methodology for real software projects using Coding Agents. **Methodology > Tooling**: execution profiles apply the same Human-controlled lifecycle.
+
+```text
+               AI DEV LOOP
+          Canonical Methodology
+                  │
+        ┌─────────┴─────────┐
+        ▼                   ▼
+ Native Codex Profile   OMX-Lite Profile
+      lightweight          structured
+
+             OMX Default
+          upstream baseline
+```
+
+Start with [Choosing an Execution Profile](docs/06-Choosing-an-Execution-Profile.md), then use the sibling [Native Codex Profile](profiles/native-codex/README.md) or [OMX-Lite Profile](profiles/omx-lite/README.md).
 
 It is designed for teams that want to:
 
@@ -27,7 +42,7 @@ Human Architecture / Product Direction
                 ↓
      Reality → Memory → Judgment → Contract
                 ↓
-        AI / OMX / Codex Execution
+       Selected Profile Execution
                 ↓
         Working Software + Evidence
                 ↓
@@ -111,15 +126,19 @@ What bounded development pass should the Coding Agents execute?
 
 ## Quick start
 
-### 1. Add the workflow to your project
+### 1. Select an execution profile
 
-Read:
+Read [Choosing an Execution Profile](docs/06-Choosing-an-Execution-Profile.md) and [Project Setup](docs/05-Project-Setup.md).
+
+For [Native Codex](profiles/native-codex/README.md), start from its Execution Plan and Goal templates:
 
 ```text
-docs/05-Project-Setup.md
+Execution Plan → Human-approved Phase ≈ Iteration → bounded Goals
+→ worktrees / native subagents when useful → integration + evidence
+→ result + deferred memory → STOP → Human review
 ```
 
-Or use the helper script:
+Native does not require the `$iteration` skill or OMX runtime. For [OMX-Lite](profiles/omx-lite/README.md), install the policy, templates, and skill with the helper:
 
 ```bash
 ./scripts/install-into-project.sh /path/to/your/project omx
@@ -132,9 +151,9 @@ omx   → .codex/skills/iteration/
 codex → .agents/skills/iteration/
 ```
 
-The script also copies the policy and templates.
+Both arguments install OMX-Lite assets. `codex` selects a plain Codex host and skill discovery path; it does **not** select the Native Codex Profile. The script also copies the policy and templates.
 
-### 2. Start one iteration
+### 2. Start one OMX-Lite iteration
 
 Inside your target project:
 
@@ -146,7 +165,7 @@ The skill reads current repository reality, previous iteration results, deferred
 
 It recommends the next bounded pass and asks only for high-value Human decisions.
 
-### 3. Execute with the lightest tool that fits
+### 3. Execute OMX-Lite with the lightest tool that fits
 
 Typical options:
 
@@ -157,7 +176,7 @@ $ultragoal
 $team
 ```
 
-### 4. Close the iteration
+### 4. Close the OMX-Lite iteration
 
 ```text
 $iteration close
@@ -197,7 +216,13 @@ Then stop, run the software, observe reality, and decide the next iteration.
 │   ├── 04-15min-SOP.md
 │   ├── 04-15min-SOP.zh-CN.md
 │   ├── 05-Project-Setup.md
-│   └── 05-Project-Setup.zh-CN.md
+│   ├── 05-Project-Setup.zh-CN.md
+│   ├── 06-Choosing-an-Execution-Profile.md
+│   └── 06-Choosing-an-Execution-Profile.zh-CN.md
+│
+├── profiles/
+│   ├── native-codex/  # Profile, Execution Plan / Goal templates, example
+│   └── omx-lite/      # Profile and existing asset entry points
 │
 ├── policy/
 │   └── OMX-LITE-POLICY.md
@@ -238,12 +263,15 @@ Human-facing project explanations use canonical English `.md` files with optiona
 docs/01-Research-Report.md
 → docs/02-Team-Playbook.md
 → docs/03-Project-Development-Guide.md
+→ docs/06-Choosing-an-Execution-Profile.md
+→ selected profiles/*/README.md
 ```
 
 ### Engineer joining an active project
 
 ```text
 docs/04-15min-SOP.md
+→ selected execution profile
 → project ARCHITECTURE.md
 → active iteration
 ```
@@ -252,6 +280,8 @@ docs/04-15min-SOP.md
 
 ```text
 HANDOFF.md
+→ docs/06-Choosing-an-Execution-Profile.md
+→ profiles/
 → policy/
 → skills/iteration/
 → VALIDATION-REPORT.md
@@ -294,7 +324,7 @@ This is how the workflow avoids both forgetting debt and becoming trapped by bac
 
 ## Example
 
-See:
+OMX-Lite iteration and deferred-memory behavior:
 
 ```text
 examples/cross-platform-v1/
@@ -313,13 +343,19 @@ Iteration 01 — Feature Complete
 → Windows validation remains remembered but intentionally deferred
 ```
 
+Native Codex planning, bounded Goals, worktree ownership, integration, and Phase STOP:
+
+```text
+profiles/native-codex/examples/
+```
+
 ---
 
 ## Tool philosophy
 
 AI Dev Loop is deliberately **tool-aware but tool-independent**.
 
-Today it includes an OMX-oriented policy and an `$iteration` skill designed for Codex/OMX workflows.
+The [Native Codex Profile](profiles/native-codex/README.md) uses Execution Plans, Phases, and bounded Goals. The [OMX-Lite Profile](profiles/omx-lite/README.md) retains the policy and `$iteration` skill for Codex/OMX hosts. [OMX Default](integrations/OMX.md) is an upstream reference, not a third canonical lifecycle or a guarantee that every upstream mode implements these boundaries.
 
 The methodology itself is built around stable concepts:
 
@@ -342,10 +378,10 @@ Tools may change. These concepts should remain useful.
 Current version:
 
 ```text
-v1.0.0
+v1.1.0
 ```
 
-v1.0 is ready for real-project validation.
+v1.1.0 adds execution profiles on top of the stable v1.0 methodology baseline. The canonical five layers, four Views, Human Gate, deferred memory, and STOP boundary remain unchanged.
 
 The next phase is to use the workflow on multiple real V1 projects and improve it from evidence rather than adding more process theory.
 

@@ -8,6 +8,8 @@ argument-hint: "[start|status|review|close] [goal, iteration-id, or path]"
 
 Manage **one bounded development pass** inside a larger human-led project.
 
+This is the **OMX-Lite Profile** iteration skill, discoverable through either an OMX or plain Codex host. Installing it for the `codex` host does not select the Native Codex Profile; its modes and iteration-boundary behavior are the same on both hosts.
+
 This skill is a Human judgment interface and iteration boundary manager. It is **not** a replacement for OMX planning/execution runtimes.
 
 ```text

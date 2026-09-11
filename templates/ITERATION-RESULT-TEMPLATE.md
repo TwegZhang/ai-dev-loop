@@ -3,6 +3,8 @@
 > Evidence-backed handoff from one development pass to Human and the next iteration.
 > Generated iteration artifacts must be written in English.
 
+This canonical result schema is used by the OMX-Lite Profile and may also be referenced for a Native Codex Phase result. Report against the pass's single authoritative Iteration Contract.
+
 ## 1. Completed outcomes
 
 - {{COMPLETED}}

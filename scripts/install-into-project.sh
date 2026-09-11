@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Install OMX-Lite Profile assets. The omx|codex argument selects the host's
+# skill discovery path; codex does not select the Native Codex Profile.
+
 if [[ $# -lt 2 ]]; then
   echo "Usage: $0 /path/to/project <omx|codex>"
   exit 1
@@ -38,8 +41,9 @@ mkdir -p "$SKILL_ROOT"
 rm -rf "$SKILL_ROOT/iteration"
 cp -R "$ROOT/skills/iteration" "$SKILL_ROOT/"
 
-echo "Installed AI Dev Loop assets into: $TARGET"
+echo "Installed AI Dev Loop OMX-Lite Profile assets into: $TARGET"
 echo "Skill installed at: $SKILL_ROOT/iteration"
+echo "Host '$HOST' selects skill discovery only, not the Native Codex Profile."
 echo
 echo "Next:"
 echo "1. Reference policy/OMX-LITE-POLICY.md from your project AGENTS.md."

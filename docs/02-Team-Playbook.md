@@ -17,18 +17,20 @@ Once architecture and iteration boundaries are clear, multiple coding workers im
 
 ## 2. Canonical Lifecycle
 
+Select an execution profile first using [Choosing an Execution Profile](06-Choosing-an-Execution-Profile.md). [Native Codex](../profiles/native-codex/README.md) and [OMX-Lite](../profiles/omx-lite/README.md) are sibling implementations of the Canonical Methodology; OMX Default is an upstream baseline/reference.
+
 ```text
 Product / Architecture
        ↓
 Human defines Iteration
        ↓
-$iteration: Reality → Memory → Judgment → Contract
+Reality → Memory → Judgment → Contract
        ↓
-Execution: solo / $plan / $ultragoal / $team
+Execution inside the selected profile
        ↓
 Working Software + Evidence
        ↓
-$iteration close
+Close the approved iteration
        ↓
 Result + Deferred Engineering Memory
        ↓
@@ -174,9 +176,17 @@ However:
 
 > Permission to defer ≠ permission to fabricate a pass.
 
-## 13. OMX Usage Rules
+## 13. Execution Profile Rules
 
-Treat OMX as the executor for the current Iteration.
+**Methodology > Tooling.** Select mechanics after agreeing on the current Iteration's boundary.
+
+### Native Codex Profile
+
+Use an Execution Plan → Human-approved Phase ≈ Iteration → bounded Goals. A Goal maps to an outcome Lane or bounded Task. Use worktrees for isolation and native subagents when useful; name the integration owner. Integrate outcomes, collect claim-matched evidence, record the result and deferred memory, then STOP. See the [Native profile](../profiles/native-codex/README.md) for templates and isolation guidance.
+
+### OMX-Lite Profile
+
+Use `$iteration` and the [policy](../policy/OMX-LITE-POLICY.md), selecting the lightest execution mode below. Treat OMX as the executor for the current Iteration.
 
 ### Solo
 One agent can complete a scoped task/lane.
@@ -197,15 +207,17 @@ Principle:
 ## 14. Standard Actions for Each Iteration
 
 ```text
-1. $iteration start
+1. Review Reality + Memory and propose a Contract in the selected profile
 2. Human approve Iteration Contract
 3. Select the lightest execution mode
 4. AI execute + local convergence
 5. Integrate / verify the current claim
-6. $iteration close
+6. Record result + deferred memory; STOP
 7. Human actually run / observe
 8. Replan for the next iteration
 ```
+
+For Native Codex, capture the approved Phase in the Execution Plan and execute its bounded Goals. For OMX-Lite, steps 1 and 6 use `$iteration start` and `$iteration close`. Both preserve **Remembered ≠ Scheduled Now** and **Iteration Complete ≠ Fully Verified ≠ Release Ready**.
 
 ## 15. Release Gate
 

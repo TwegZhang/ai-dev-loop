@@ -2,6 +2,8 @@
 
 > Team/project policy for using OMX inside a human-controlled iterative development process.
 
+This policy implements the **OMX-Lite Profile** of AI Dev Loop. Its stable v1.0 path and operating rules remain unchanged. OMX Default is the upstream baseline/reference, not a runtime reimplemented by this policy.
+
 ## Position
 
 OMX is an **Iteration Execution Coordinator**, not the owner of the full project lifecycle.

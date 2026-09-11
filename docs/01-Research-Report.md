@@ -330,32 +330,19 @@ High-value Human work centers on:
 - Verification claims;
 - Final accountability.
 
-## 12. OMX's Place in This Methodology
+## 12. Execution Profiles: Methodology > Tooling
 
-OMX is well suited to providing:
+The Canonical Methodology has two sibling execution profiles: [Native Codex](../profiles/native-codex/README.md) and [OMX-Lite](../profiles/omx-lite/README.md). They preserve the five layers and four Views above. OMX Default is the upstream baseline/reference, not a third methodology.
 
-- Planning;
-- Durable execution;
-- Team/worktree execution;
-- Runtime state / resume;
-- Verification support.
+| Surface | Execution approach | Trade-off |
+|---|---|---|
+| Native Codex Profile | Execution Plan → Phase ≈ Iteration → bounded Goals → worktrees/subagents when useful → integration/evidence → STOP | Less orchestration overhead; the main session and Human must keep boundaries, integration, and memory explicit |
+| OMX-Lite Profile | `$iteration` + policy, then solo / `$plan` / `$ultragoal` / `$team` as needed, then close and STOP | Explicit iteration artifacts and selected runtime coordination, with installation and state-management overhead |
+| OMX Default reference | Selected upstream workflow and its own operating contract | Capabilities, checkpoints, and persistence depend on the mode and installed version; assess their fit rather than assuming this repository's policy applies |
 
-It should not, however, be expected to manage the entire lifecycle from the current state to the final release.
+A Native Goal maps to an outcome Lane or bounded Task; it does not replace the Human-controlled Iteration. OMX-Lite positions the chosen OMX tools as an Iteration Execution Coordinator. Neither profile hands the whole path to Release to an unbounded execution loop.
 
-This methodology positions it as an:
-
-> **Iteration Execution Coordinator**
-
-The Human defines the boundaries of each iteration, then uses the following as needed:
-
-```text
-solo
-$plan
-$ultragoal
-$team
-```
-
-OMX's current guidance also distinguishes lightweight planning, durable execution, and parallel teams, and cautions against defaulting to excessive orchestration merely because a project is large.
+See [Choosing an Execution Profile](06-Choosing-an-Execution-Profile.md) for selection criteria and [OMX integration](../integrations/OMX.md) for upstream context. This comparison describes this repository's intended usage, not every upstream mode's behavior.
 
 ## 13. Areas of Strong Consensus
 

@@ -32,4 +32,8 @@ Iteration Complete ≠ Release Ready
 Remembered ≠ Scheduled Now
 ```
 
-Future examples should focus on distinct project patterns rather than duplicating the same mechanics.
+## Native Codex profile
+
+See the [Native worked example](../profiles/native-codex/examples/README.md): an Execution Plan with an embedded Iteration Contract, a runtime-contract Goal, a dependent web-integration Goal, and a Phase result followed by STOP for Human judgment. It demonstrates worktree ownership, hard-dependency ordering, explicit evidence limits, and TD/DV/EG/KR memory without adding an orchestration runtime.
+
+The Native example is fictional; its test results are illustrative, not evidence from this repository. Future examples should focus on distinct project patterns rather than duplicating the same mechanics.

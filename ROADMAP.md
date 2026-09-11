@@ -1,10 +1,12 @@
 # Roadmap
 
-AI Dev Loop v1.0 is intentionally small.
+AI Dev Loop v1.1.0 adds execution profiles while keeping the canonical methodology small and stable.
 
 ## Current phase — Real-project validation
 
-Priority: run the workflow on multiple real software projects.
+Priority: compare Native Codex and OMX-Lite on real software projects, using OMX Default as an upstream baseline/reference rather than reimplementing it here. Record the installed runtime and mode so comparisons do not treat all upstream workflows as identical.
+
+Use the [selector's six dimensions](docs/06-Choosing-an-Execution-Profile.md): Human control capability, coordination complexity, environment uncertainty, verification rigidity, desired autonomy, and persistent orchestration state. Test exceptions as well as typical fits: strict verification in a single native Goal, uncertain environments in either profile, and bounded native work inside a complex project.
 
 Collect evidence on:
 
@@ -17,6 +19,8 @@ Collect evidence on:
 - tool/coordination overhead;
 - verification claims that later fail;
 - time from approved iteration to working software.
+
+Compare useful outcomes and evidence at comparable fidelity, not just task counts or automation volume. Record why a profile was selected, its setup and coordination cost, whether Human review boundaries held, and whether a different profile would have reduced friction. Reconsider profile fit at reviewed iteration boundaries.
 
 ## Likely v1.x work
 

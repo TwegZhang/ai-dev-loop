@@ -4,6 +4,8 @@
 > Normally generated through `$iteration start`; this file may also be edited manually.
 > Generated iteration artifacts must be written in English.
 
+This canonical schema is used by the OMX-Lite Profile and may also be referenced by the Native Codex Profile. Keep one authoritative Iteration Contract per pass; a Native Phase or Goal must not create a conflicting copy.
+
 ## 1. Goal
 
 {{GOAL}}

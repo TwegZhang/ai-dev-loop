@@ -1,8 +1,12 @@
 # OMX Integration
 
-AI Dev Loop currently has first-class usage guidance for Oh My Codex (OMX).
+This document describes the **OMX-Lite Profile** implementation of AI Dev Loop using Oh My Codex (OMX).
 
 ## Positioning
+
+AI Dev Loop's canonical methodology supports both the [Native Codex Profile](../profiles/native-codex/README.md) and [OMX-Lite Profile](../profiles/omx-lite/README.md). Both preserve Project → Iteration → Lane → Task → Inner Loop and Reality → Memory → Human Judgment → Contract. Use the [profile selector](../docs/06-Choosing-an-Execution-Profile.md) to compare execution needs.
+
+**OMX-Lite** is bounded AI Dev Loop usage of OMX through policy, contracts, and the iteration skill. **OMX Default** is the upstream strict baseline/reference, not another implementation maintained here. Depending on the selected upstream mode, its strengths can include persistent coordination, structured execution, and explicit verification gates; those mechanisms can also add setup, state management, and coordination overhead. Check the installed mode's actual behavior rather than assuming every OMX workflow has the same rigidity or autonomy.
 
 AI Dev Loop does **not** treat OMX as the owner of the whole project lifecycle.
 
@@ -63,6 +67,8 @@ Current project guidance in this repository uses:
 ```
 
 See `docs/05-Project-Setup.md` for host/path notes.
+
+The existing installer accepts `omx|codex` as **host/discovery choices for the same OMX-Lite assets**. `omx` installs the skill under `.codex/skills/iteration/`; `codex` installs it under `.agents/skills/iteration/` for plain Codex. The `codex` argument does not select the Native Codex Profile. Policy, templates, and project artifact paths stay the same.
 
 ## Why the policy exists
 

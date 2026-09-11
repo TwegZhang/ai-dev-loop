@@ -42,7 +42,11 @@ if [[ ! -x "$validator" ]]; then
   exit 1
 fi
 
-mkdir -p "$fixture_root/docs" "$fixture_root/policy"
+mkdir -p \
+  "$fixture_root/docs" \
+  "$fixture_root/policy" \
+  "$fixture_root/profiles/native-codex" \
+  "$fixture_root/profiles/omx-lite"
 
 printf '[Simplified Chinese](README.zh-CN.md)\n' > "$fixture_root/README.md"
 expect_failure "$validator" "$fixture_root"
@@ -53,6 +57,9 @@ write_bilingual_pair "$fixture_root/docs" '02-Team-Playbook'
 write_bilingual_pair "$fixture_root/docs" '03-Project-Development-Guide'
 write_bilingual_pair "$fixture_root/docs" '04-15min-SOP'
 write_bilingual_pair "$fixture_root/docs" '05-Project-Setup'
+write_bilingual_pair "$fixture_root/docs" '06-Choosing-an-Execution-Profile'
+write_bilingual_pair "$fixture_root/profiles/native-codex" 'README'
+write_bilingual_pair "$fixture_root/profiles/omx-lite" 'README'
 
 printf '%b' '\344\270\215\345\272\224\345\207\272\347\216\260\345\234\250 Policy \344\270\255\n' > "$fixture_root/policy/invalid.md"
 expect_failure "$validator" "$fixture_root"
@@ -62,6 +69,27 @@ rm "$fixture_root/policy/invalid.md"
 rm "$fixture_root/docs/05-Project-Setup.md" "$fixture_root/docs/05-Project-Setup.zh-CN.md"
 expect_failure "$validator" "$fixture_root"
 write_bilingual_pair "$fixture_root/docs" '05-Project-Setup'
+
+rm "$fixture_root/docs/06-Choosing-an-Execution-Profile.md" "$fixture_root/docs/06-Choosing-an-Execution-Profile.zh-CN.md"
+expect_failure "$validator" "$fixture_root"
+write_bilingual_pair "$fixture_root/docs" '06-Choosing-an-Execution-Profile'
+
+rm "$fixture_root/profiles/native-codex/README.zh-CN.md"
+expect_failure "$validator" "$fixture_root"
+write_bilingual_pair "$fixture_root/profiles/native-codex" 'README'
+
+rm "$fixture_root/profiles/omx-lite/README.md"
+expect_failure "$validator" "$fixture_root"
+write_bilingual_pair "$fixture_root/profiles/omx-lite" 'README'
+
+printf '%b' '\344\270\255\346\226\207\n' > "$fixture_root/profiles/native-codex/EXECUTION-PLAN-TEMPLATE.md"
+expect_failure "$validator" "$fixture_root"
+rm "$fixture_root/profiles/native-codex/EXECUTION-PLAN-TEMPLATE.md"
+
+mkdir -p "$fixture_root/profiles/native-codex/examples"
+printf '%b' '\344\270\255\346\226\207\n' > "$fixture_root/profiles/native-codex/examples/invalid.md"
+expect_failure "$validator" "$fixture_root"
+rm "$fixture_root/profiles/native-codex/examples/invalid.md"
 
 printf '[Simplified Chinese](missing/README.zh-CN.md)\n' > "$fixture_root/README.md"
 printf '%b' '[English](missing/README.md)\n\n\351\241\271\347\233\256\350\257\264\346\230\216\n' > "$fixture_root/README.zh-CN.md"
@@ -85,6 +113,10 @@ require_text "$repo_root/skills/iteration/SKILL.md" "$artifact_rule"
 require_text "$repo_root/templates/ITERATION-TEMPLATE.md" "$artifact_rule"
 require_text "$repo_root/templates/ITERATION-RESULT-TEMPLATE.md" "$artifact_rule"
 require_text "$repo_root/templates/DEFERRED-LEDGER-TEMPLATE.md" "$artifact_rule"
+
+native_artifact_rule='Generated artifact: English only.'
+require_text "$repo_root/profiles/native-codex/EXECUTION-PLAN-TEMPLATE.md" "$native_artifact_rule"
+require_text "$repo_root/profiles/native-codex/GOAL-TEMPLATE.md" "$native_artifact_rule"
 
 install_target="$fixture_root/install-target"
 mkdir -p "$install_target"
