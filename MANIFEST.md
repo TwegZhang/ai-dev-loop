@@ -1,0 +1,45 @@
+# Package Manifest
+
+| File | SHA-256 |
+|---|---|
+| `.gitignore` | `b72565c27b896d84cd24ff9e32cc55e9303f024d87d144ff3d74b31b27991412` |
+| `CHANGELOG.md` | `d337163091c1f447ddb08629ed7ac6748bd05142dc719da57213fe8503cc80c4` |
+| `CONTRIBUTING.md` | `481f70da8369f087b3ef3dd9e92b25a9347829c99924533c8a6019daad940cf3` |
+| `HANDOFF.md` | `7d9efbace2e73d5a1bee5236e36fb15f2554ff30836f9ec078db4a2602fc6e83` |
+| `LICENSE` | `cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30` |
+| `README.md` | `0c6c5b7a527298768bc0f5e8386bf5d5eaa1d669389f9726187d7b203bdc1c06` |
+| `README.zh-CN.md` | `a9fa9a8f0bd84570f3f4befb8e39da330da6e495a8e5069741c66d2c69ff8bf6` |
+| `ROADMAP.md` | `f350952ca9c6a4a2f89de9690fe172195f708584d27cbae36a5f4fdb50aabc3c` |
+| `SECURITY.md` | `597133aab172e69ccbb7a82ac7ef6496a353d85a0de871282bd71c7be0bf7b06` |
+| `VALIDATION-REPORT.md` | `c908e7ac5dd0b28a92961a2990f3d0c6c284f46d1547b6a058e7f66c1d40a452` |
+| `VERSION` | `59854984853104df5c353e2f681a15fc7924742f9a2e468c29af248dce45ce03` |
+| `docs/01-Research-Report.md` | `4db3322f8a70d4f234650634d998d813a724e0c9a2b60b0855de877cf94771d8` |
+| `docs/01-Research-Report.zh-CN.md` | `726dbfae59dd8151055aff172aa9353189d299d4074dfdf144a29ef361a42d2c` |
+| `docs/02-Team-Playbook.md` | `f25aa8fb14dba90b3093d5f1219b6e0f5a59bd97595e6f89bb764fa0770cf357` |
+| `docs/02-Team-Playbook.zh-CN.md` | `212f1eaf7e42f051ab34a07a7efb8a266d57a3be17c0e96182091a2705af3186` |
+| `docs/03-Project-Development-Guide.md` | `153a79a0286b6effe70c4fc9c7a26fb867ceb471e479bad92ad9db8d9d8d8437` |
+| `docs/03-Project-Development-Guide.zh-CN.md` | `bba4a946e206f897b27b9ec47400912dbca189d61be6b054e81239188dc98e31` |
+| `docs/04-15min-SOP.md` | `5904cc40c19a07ed7d3b29f5b5a152807c8ff7895b144d9ad7d245cb5f89b70c` |
+| `docs/04-15min-SOP.zh-CN.md` | `2b3dda5d5927b7e8df6c36ec29182b33f37f27b3d2f129a98c3558b969f3b4c0` |
+| `docs/05-Project-Setup.md` | `6eac37dce81459bace312930bcce3491e157424c7647dea7e16493249ba9a4df` |
+| `docs/05-Project-Setup.zh-CN.md` | `f66b6df7c2dc02d0715e2a5a381cc3342035f11ca2b32cdabec6f00ffff63c60` |
+| `examples/README.md` | `af03c43e73549c15272e48da30f0d3097259c59a0d068b4495b6f492182e28f3` |
+| `examples/cross-platform-v1/deferred-after-iteration-01.md` | `ba62417edffcfb0aff202aa860e3412cd67d142246108a2784797be85daf91c8` |
+| `examples/cross-platform-v1/iteration-01-result.md` | `ad187300e070004c2688b9f1af6e6683f77f014726874dbb59b5f3d1f1103dce` |
+| `examples/cross-platform-v1/iteration-01.md` | `285c4fa62f55ba7f117f91196f26d64c6ab9ec7cb2506f66ca2a85414838645c` |
+| `examples/cross-platform-v1/iteration-02.md` | `cd6731d2263f6cbaca2a16efca7b50fc809d8bbdb6caf86b826ebfb2e83a4572` |
+| `integrations/OMX.md` | `39aeef663df409587da96d279dc835a170aefd1fd6d998a1399205926cc07ab8` |
+| `policy/OMX-LITE-POLICY.md` | `225e4e1799635cba8c2b274ccb3d7ac3defbcdc1f4deac66c22da3d5e037beae` |
+| `scripts/install-into-project.sh` | `0ff4ca4750e87b20b93fc5d1111c7fdee22bd8402d7d12e45ae5e7fb53bceb38` |
+| `scripts/test-language-policy.sh` | `9098f42932ac5a2d4995e8e74b8557ebd9df1908a5bd4682f976731bac6c72da` |
+| `scripts/validate-language.sh` | `8f2c0fbdad17840fd069575e3481b34bd06efd38a419bfc1ed19c6dec7f6c23a` |
+| `skills/iteration/SKILL.md` | `dd0881bdc0f295d8eeec6fed792231daea580205e43f9e5de31968aa24f713aa` |
+| `skills/iteration/references/close.md` | `dd4e947a00124c4c8757545b8102ce8a3ee68162d223fb135fbf57f96a7ec939` |
+| `skills/iteration/references/memory.md` | `0d5206ea84e90b1404960417a1c5e3644db3e33ebc384b6b07b6d8368f8be6a0` |
+| `skills/iteration/references/review.md` | `c5c7b6c863c2bf1a40839e748c028ebb83f705de002cd331a6a094435308c8aa` |
+| `skills/iteration/references/start.md` | `bf1b2663d4e5064fdd43dfe1a97edbdb8044544893393ca42caa59ca792d73b6` |
+| `skills/iteration/references/status.md` | `3c0d75deb3bea284aeac3104329bff1eb431455980651b499e6eff11b668ff59` |
+| `templates/AGENTS-SNIPPET.md` | `11e1ee02f18c27020dc03651842a3ca309ecbcebc39011eace05db8575f26062` |
+| `templates/DEFERRED-LEDGER-TEMPLATE.md` | `fe4f6397c7ef39e03e41946bb8e4225dbd9585de06a653d9efa9cafcedbd57ea` |
+| `templates/ITERATION-RESULT-TEMPLATE.md` | `d1475aed484fa01e29796103cecadb4383edb709e8f3b5d6646e1ca07d288298` |
+| `templates/ITERATION-TEMPLATE.md` | `082a7b7ea6960e409cc15507737739af90bb52688c3be79daf50fe4df4264c97` |
